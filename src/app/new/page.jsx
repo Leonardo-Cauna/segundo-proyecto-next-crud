@@ -18,7 +18,7 @@ export default function NewPage ({params}){
                     setDescription(data.Tasks.description)
                 });
         }
-    }, []);
+    });
 
     const onSubmit = async (e) =>{
         e.preventDefault()
