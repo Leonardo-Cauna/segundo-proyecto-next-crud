@@ -24,7 +24,8 @@ export default function NewPage ({params}){
         e.preventDefault()
 
         if(params.id){
-            const res = await fetch('/api/tasks/'+params.id, {
+            try {
+                const res = await fetch('/api/tasks/'+params.id, {
                 method: "PUT",
                 body: JSON.stringify({title, description}),
                 headers:{
@@ -33,10 +34,15 @@ export default function NewPage ({params}){
             })
             const data = await res.json()
             console.log(data);
+            } catch (error) {
+                console.log(error);
+            }
+            
         }
         else{
 
-            const res = await fetch('/api/tasks', {
+            try {
+                const res = await fetch('/api/tasks', {
                 method:'POST',
                 body: JSON.stringify({title, description}),
                 headers:{
@@ -44,6 +50,10 @@ export default function NewPage ({params}){
                 }
             })
             const data = await res.json()
+            } catch (error) {
+                console.log(error);
+            }
+            
         }
         router.refresh()
         router.push('/')
